@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cars_navigation"
+    app:startDestination="@id/fragmentCars">
+
+    <fragment
+        android:id="@+id/fragmentCars"
+        android:name="com.noemi.carsreloded.screens.cars.FragmentCars"
+        android:label="Fragment Cars"
+        tools:layout="@layout/fragment_cars" />
+
+    <fragment
+        android:id="@+id/fragmentBattery"
+        android:name="com.noemi.carsreloded.screens.battery.FragmentByBattery"
+        android:label="Fragment Battery"
+        tools:layout="@layout/fragment_by_battery" />
+
+    <fragment
+        android:id="@+id/fragmentPlateNumber"
+        android:name="com.noemi.carsreloded.screens.plate.FragmentPlateNumber"
+        android:label="Fragment Plate Number"
+        tools:layout="@layout/fragment_plate_number" />
+
+    <fragment
+        android:id="@+id/fragmentDistance"
+        android:name="com.noemi.carsreloded.screens.distance.FragmentDistance"
+        android:label="Fragment Distance"
+        tools:layout="@layout/fragment_distance" />
+
+    <fragment
+        android:id="@+id/fragmentMap"
+        android:name="com.noemi.carsreloded.screens.map.FragmentMap"
+        android:label="Fragment Map"
+        tools:layout="@layout/fragment_map" />
+
+</navigation>

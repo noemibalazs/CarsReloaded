@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Cars Reloaded</string>
+    <string name="label_maps">Map</string>
+    <string name="label_plate_number">Plate nr.</string>
+    <string name="label_battery">Battery</string>
+    <string name="label_distance">Distance</string>
+    <string name="label_cars">Cars</string>
+
+    <string name="label_car_model">%1$s - %2$d - %3$s</string>
+
+    <string name="label_permission_title">Necessary permission</string>
+    <string name="label_permission_message">To grant location permission is necessary, in order to use our application!</string>
+    <string name="label_ok">OK</string>
+
+    <string name="label_error">Something went wrong, try it again!</string>
+    <string name="label_plate_number_hint">Search cars by plate number</string>
+    <string name="label_battery_percentage_hint">Search cars by battery percentage</string>
+    <string name="label_nearest_cars_message">The list of cars are displayed based on your distance, starting with the nearest to your position!</string>
+</resources>

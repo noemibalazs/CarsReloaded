@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragmentCars"
+        android:icon="@drawable/cars_list"
+        android:title="@string/label_cars" />
+
+    <item
+        android:id="@+id/fragmentMap"
+        android:icon="@drawable/location"
+        android:title="@string/label_maps" />
+
+    <item
+        android:id="@+id/fragmentPlateNumber"
+        android:icon="@drawable/plate"
+        android:title="@string/label_plate_number" />
+
+    <item
+        android:id="@+id/fragmentBattery"
+        android:icon="@drawable/battery"
+        android:title="@string/label_battery" />
+
+    <item
+        android:id="@+id/fragmentDistance"
+        android:icon="@drawable/distance"
+        android:title="@string/label_distance" />
+
+</menu>
