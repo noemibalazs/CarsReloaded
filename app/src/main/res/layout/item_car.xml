@@ -7,7 +7,7 @@
 
         <variable
             name="car"
-            type="com.noemi.carsreloded.model.local.Car" />
+            type="com.noemi.carsreloaded.model.local.Car" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

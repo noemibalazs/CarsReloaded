@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.noemi.carsreloded.screens.plate.PlateNumberViewModel" />
+            type="com.noemi.carsreloaded.screens.plate.PlateNumberViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

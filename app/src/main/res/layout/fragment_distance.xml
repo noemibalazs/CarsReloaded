@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.noemi.carsreloded.screens.distance.DistanceViewModel" />
+            type="com.noemi.carsreloaded.screens.distance.DistanceViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

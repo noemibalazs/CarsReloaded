@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.noemi.carsreloded.screens.battery.BatteryViewModel" />
+            type="com.noemi.carsreloaded.screens.battery.BatteryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
