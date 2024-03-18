@@ -5,8 +5,8 @@ TODO:
 Design and implement an application following the next steps:
 
 1. Fetching cars from an API and displaying in a list;
-2. Showing the cars on the Google map;
-3. Filters cars by platenumber;
+2. Showing the cars on the Google Maps;
+3. Filters cars by plate number;
 4. Filters cars by battery percentage;
 5. Sorts cars based on your position.
    
@@ -15,8 +15,8 @@ Libraries:
 1. Koin
 2. Retrofit
 3. Glide
-4. Databinding
-5. Google Map
+4. Data Binding
+5. Google Maps
 6. Support design libraries
 7. MockK
 
