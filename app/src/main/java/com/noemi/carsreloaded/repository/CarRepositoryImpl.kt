@@ -14,9 +14,7 @@ class CarRepositoryImpl(
     private val carDispatcher: CarDispatcher
 ) : CarRepository {
 
-    override suspend fun saveCars(cars: List<Car>) = withContext(carDispatcher.dispatcher()) {
-        carDAO.saveCars(cars)
-    }
+    override suspend fun saveCars(cars: List<Car>) = carDAO.saveCars(cars)
 
     override suspend fun loadRemoteCars(): Result<List<Car>> = withContext(carDispatcher.dispatcher()) {
         when (val cars = carRemoteDataSource.getRemoteCars()) {
@@ -26,15 +24,9 @@ class CarRepositoryImpl(
         }
     }
 
-    override suspend fun filteredByPlateNumber(plate: String): List<Car> = withContext(carDispatcher.dispatcher()) {
-        carDAO.filteredCarsByPlateNumber(plate)
-    }
+    override suspend fun filteredByPlateNumber(plate: String): List<Car> = carDAO.filteredCarsByPlateNumber(plate)
 
-    override suspend fun filteredByBatteryPercentage(battery: Int): List<Car> = withContext(carDispatcher.dispatcher()) {
-        carDAO.filteredCarsByRemainingBattery(battery)
-    }
+    override suspend fun filteredByBatteryPercentage(battery: Int): List<Car> = carDAO.filteredCarsByRemainingBattery(battery)
 
-    override suspend fun getCars(): List<Car> = withContext(carDispatcher.dispatcher()) {
-        carDAO.getCars()
-    }
+    override suspend fun getCars(): List<Car> = carDAO.getCars()
 }
