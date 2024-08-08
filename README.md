@@ -2,6 +2,10 @@ Cars Reloaded
 
 TODO:
 
+First steps:
+1. Use or got your personal Google Maps key
+2. Add your personal access token to the apiKey.properties file
+
 Design and implement an application following the next steps:
 
 1. Fetching cars from an API and displaying in a list;
