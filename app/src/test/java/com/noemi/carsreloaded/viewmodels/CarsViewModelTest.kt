@@ -4,8 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.noemi.carsreloaded.model.local.Car
 import com.noemi.carsreloaded.screens.cars.CarsViewModel
-import com.noemi.carsreloaded.usecase.UseCaseLoadCars
-import com.noemi.carsreloaded.usecase.UseCaseSaveCars
+import com.noemi.carsreloaded.usecase.LoadCarsUseCase
+import com.noemi.carsreloaded.usecase.SaveCarsUseCase
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,8 +26,8 @@ class CarsViewModelTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
 
-    private val useCaseLoadCars: UseCaseLoadCars = mockk()
-    private val useCarsSaveCars: UseCaseSaveCars = mockk()
+    private val loadCarsUseCase: LoadCarsUseCase = mockk()
+    private val useCarsSaveCars: SaveCarsUseCase = mockk()
     private val carsObserver: Observer<List<Car>> = mockk()
     private val errorObserver: Observer<String> = mockk()
     private val progressObserver: Observer<Boolean> = mockk()
@@ -46,7 +46,7 @@ class CarsViewModelTest {
     fun setUp() {
         Dispatchers.setMain(dispatcher)
         viewModel = CarsViewModel(
-            useCaseLoadCars = useCaseLoadCars,
+            loadCarsUseCase = loadCarsUseCase,
             useCarsSaveCars = useCarsSaveCars
         )
 
@@ -71,12 +71,12 @@ class CarsViewModelTest {
 
     @Test
     fun `test load cars and should be successful`() = runBlocking {
-        coEvery { useCaseLoadCars.invoke() } returns Result.success(cars)
+        coEvery { loadCarsUseCase.invoke() } returns Result.success(cars)
         coEvery { useCarsSaveCars.invoke(cars) } just runs
 
         viewModel.loadCars()
 
-        coVerify { useCaseLoadCars.invoke() }
+        coVerify { loadCarsUseCase.invoke() }
         coVerify { useCarsSaveCars.invoke(cars) }
 
         coVerify { progressObserver.onChanged(true) }
@@ -86,11 +86,11 @@ class CarsViewModelTest {
 
     @Test
     fun `test load cars and should failed`() = runBlocking {
-        coEvery { useCaseLoadCars.invoke() } returns Result.failure(Throwable(error))
+        coEvery { loadCarsUseCase.invoke() } returns Result.failure(Throwable(error))
 
         viewModel.loadCars()
 
-        coVerify { useCaseLoadCars.invoke() }
+        coVerify { loadCarsUseCase.invoke() }
 
         coVerify { progressObserver.onChanged(true) }
         coVerify { errorObserver.onChanged(error) }

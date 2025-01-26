@@ -24,15 +24,17 @@ class App : Application() {
             androidLogger(Level.ERROR)
             androidContext(this@App)
 
-            modules(dataManagerModule)
-            modules(apiHelperModule)
-            modules(dispatcherModule)
-            modules(carNetworkModule)
-            modules(carDaoModule)
-            modules(carRemoteDataSource)
-            modules(carRepositoryModule)
-            modules(useCasesModule)
-            modules(viewModelsModule)
+            modules(
+                dataManagerModule,
+                apiHelperModule,
+                dispatcherModule,
+                carNetworkModule,
+                carDaoModule,
+                carRemoteDataSource,
+                carRepositoryModule,
+                useCasesModule,
+                viewModelsModule
+            )
         }
     }
 

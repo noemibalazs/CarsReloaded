@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.noemi.carsreloaded.model.local.Car
 import com.noemi.carsreloaded.screens.map.MapViewModel
-import com.noemi.carsreloaded.usecase.UseCaseGetCars
+import com.noemi.carsreloaded.usecase.GetCarsUseCase
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,7 +25,7 @@ class MapViewModelTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
 
-    private val useCaseGetCars: UseCaseGetCars = mockk()
+    private val getCarsUseCase: GetCarsUseCase = mockk()
     private val carsObserver: Observer<List<Car>> = mockk()
     private val carsCaptor = mutableListOf<List<Car>>()
 
@@ -37,7 +37,7 @@ class MapViewModelTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(dispatcher)
-        viewModel = MapViewModel(useCaseGetCars)
+        viewModel = MapViewModel(getCarsUseCase)
 
         carsCaptor.clear()
         coEvery { carsObserver.onChanged(capture(carsCaptor)) } just runs
@@ -51,21 +51,21 @@ class MapViewModelTest {
 
     @Test
     fun `test load cars returns saved cars list`() = runBlocking {
-        coEvery { useCaseGetCars.invoke() } returns cars
+        coEvery { getCarsUseCase.invoke() } returns cars
 
         viewModel.loadCars()
 
-        coVerify { useCaseGetCars.invoke() }
+        coVerify { getCarsUseCase.invoke() }
         coVerify { carsObserver.onChanged(cars) }
     }
 
     @Test
     fun `test load cars returns empty list`() = runBlocking {
-        coEvery { useCaseGetCars.invoke() } returns emptyList()
+        coEvery { getCarsUseCase.invoke() } returns emptyList()
 
         viewModel.loadCars()
 
-        coVerify { useCaseGetCars.invoke() }
+        coVerify { getCarsUseCase.invoke() }
         coVerify { carsObserver.onChanged(emptyList()) }
     }
 }

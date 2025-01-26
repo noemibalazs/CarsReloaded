@@ -7,7 +7,7 @@ import com.noemi.carsreloaded.helper.DataManager
 import com.noemi.carsreloaded.model.local.Car
 import com.noemi.carsreloaded.model.local.CarLocation
 import com.noemi.carsreloaded.screens.distance.DistanceViewModel
-import com.noemi.carsreloaded.usecase.UseCaseGetCars
+import com.noemi.carsreloaded.usecase.GetCarsUseCase
 import com.noemi.carsreloaded.util.meterToKm
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +30,7 @@ class DistanceViewModelTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
 
-    private val useCaseGetCars: UseCaseGetCars = mockk()
+    private val getCarsUseCase: GetCarsUseCase = mockk()
     private val dataManager: DataManager = mockk()
     private val carLocation: CarLocation = mockk()
     private val userLocation:Location = mockk()
@@ -55,7 +55,7 @@ class DistanceViewModelTest {
         Dispatchers.setMain(dispatcher)
         viewModel = DistanceViewModel(
             dataManager = dataManager,
-            useCaseGetCars = useCaseGetCars
+            getCarsUseCase = getCarsUseCase
         )
 
         carsCaptor.clear()
@@ -86,13 +86,13 @@ class DistanceViewModelTest {
         mockkStatic(Float::meterToKm)
         coEvery { any<Float>().meterToKm() } returns result
 
-        coEvery { useCaseGetCars.invoke() } returns cars
+        coEvery { getCarsUseCase.invoke() } returns cars
 
         viewModel.loadCars()
 
         coVerify { dataManager.getLastKnownLongitude() }
         coVerify { dataManager.getLastKnownLatitude() }
-        coVerify { useCaseGetCars.invoke() }
+        coVerify { getCarsUseCase.invoke() }
         coVerify { carsObserver.onChanged(sorted.values.toList()) }
     }
 

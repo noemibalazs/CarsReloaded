@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.noemi.carsreloaded.model.local.Car
 import com.noemi.carsreloaded.screens.battery.BatteryViewModel
-import com.noemi.carsreloaded.usecase.UseCaseFilterByBatteryPercentage
+import com.noemi.carsreloaded.usecase.FilterByBatteryPercentageUseCase
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,7 +25,7 @@ class BatteryViewModelTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
 
-    private val useCase: UseCaseFilterByBatteryPercentage = mockk()
+    private val useCase: FilterByBatteryPercentageUseCase = mockk()
     private val carsObserver: Observer<List<Car>> = mockk()
     private val hideKeyBoardObserver: Observer<Boolean> = mockk()
 

@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class UseCaseFilterByPlateNumberImplTest {
+class FilterByPlateNumberUseCaseTest {
 
     private val carsRepository: CarRepository = mockk()
     private val car1 = mockk<Car>()
@@ -17,13 +17,13 @@ class UseCaseFilterByPlateNumberImplTest {
     private val filterTest = "TEST"
     private val filterNew = "NEW"
 
-    private lateinit var useCaseSaveCars: UseCaseSaveCars
-    private lateinit var useCaseFilterByPlateNumber: UseCaseFilterByPlateNumber
+    private lateinit var saveCarsUseCase: SaveCarsUseCase
+    private lateinit var filterByPlateNumberUseCase: FilterByPlateNumberUseCase
 
     @Before
     fun setUp() {
-        useCaseSaveCars = UseCaseSaveCarsImpl(carsRepository)
-        useCaseFilterByPlateNumber = UseCaseFilterByPlateNumberImpl(carsRepository)
+        saveCarsUseCase = SaveCarsUseCase(carsRepository)
+        filterByPlateNumberUseCase = FilterByPlateNumberUseCase(carsRepository)
     }
 
     @Test
@@ -35,8 +35,8 @@ class UseCaseFilterByPlateNumberImplTest {
         coEvery { carsRepository.saveCars(listOf(car1, car2)) } just runs
         coEvery { carsRepository.filteredByPlateNumber(filterTest) } returns listOf(car1)
 
-        useCaseSaveCars.invoke(listOf(car1, car2))
-        useCaseFilterByPlateNumber.invoke(filterTest)
+        saveCarsUseCase.invoke(listOf(car1, car2))
+        filterByPlateNumberUseCase.invoke(filterTest)
 
         coVerifyAll {
             carsRepository.saveCars(listOf(car1, car2))
@@ -52,8 +52,8 @@ class UseCaseFilterByPlateNumberImplTest {
         coEvery { carsRepository.saveCars(listOf(car1)) } just runs
         coEvery { carsRepository.filteredByPlateNumber(filterNew) } returns emptyList()
 
-        useCaseSaveCars.invoke(listOf(car1))
-        useCaseFilterByPlateNumber.invoke(filterNew)
+        saveCarsUseCase.invoke(listOf(car1))
+        filterByPlateNumberUseCase.invoke(filterNew)
 
         coVerifyAll {
             carsRepository.saveCars(listOf(car1))

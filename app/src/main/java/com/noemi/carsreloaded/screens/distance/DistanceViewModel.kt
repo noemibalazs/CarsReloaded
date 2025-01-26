@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.noemi.carsreloaded.helper.DataManager
 import com.noemi.carsreloaded.model.local.Car
-import com.noemi.carsreloaded.usecase.UseCaseGetCars
+import com.noemi.carsreloaded.usecase.GetCarsUseCase
 import com.noemi.carsreloaded.util.meterToKm
 import kotlinx.coroutines.launch
 import java.util.*
 
 class DistanceViewModel(
-    private val useCaseGetCars: UseCaseGetCars,
+    private val getCarsUseCase: GetCarsUseCase,
     private val dataManager: DataManager
 ) : ViewModel() {
 
@@ -37,7 +37,7 @@ class DistanceViewModel(
             userLocation.latitude = dataManager.getLastKnownLatitude()
             userLocation.longitude = dataManager.getLastKnownLongitude()
 
-            useCaseGetCars.invoke().forEach { car ->
+            getCarsUseCase.invoke().forEach { car ->
 
                 carPosition.latitude = car.location.latitude
                 carPosition.longitude = car.location.longitude

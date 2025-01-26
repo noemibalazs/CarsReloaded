@@ -5,7 +5,7 @@ import com.noemi.carsreloaded.util.LAST_KNOW_LATITUDE
 import com.noemi.carsreloaded.util.LAST_KNOW_LONGITUDE
 import java.lang.Double.longBitsToDouble
 
-class DataManagerImpl(private val context: Context) : DataManager {
+class DataManagerImpl(context: Context) : DataManager {
 
     private val sharedPreferences = context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
 

@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.noemi.carsreloaded.model.local.Car
-import com.noemi.carsreloaded.usecase.UseCaseLoadCars
-import com.noemi.carsreloaded.usecase.UseCaseSaveCars
+import com.noemi.carsreloaded.usecase.LoadCarsUseCase
+import com.noemi.carsreloaded.usecase.SaveCarsUseCase
 import kotlinx.coroutines.launch
 
 class CarsViewModel(
-    private val useCaseLoadCars: UseCaseLoadCars,
-    private val useCarsSaveCars: UseCaseSaveCars
+    private val loadCarsUseCase: LoadCarsUseCase,
+    private val useCarsSaveCars: SaveCarsUseCase
 ) : ViewModel() {
 
     private val _cars = MutableLiveData<List<Car>>()
@@ -27,7 +27,7 @@ class CarsViewModel(
         viewModelScope.launch {
             _isLoading.value = true
 
-            useCaseLoadCars.invoke()
+            loadCarsUseCase.invoke()
                 .onSuccess { cars ->
                     _cars.value = cars
                     _isLoading.value = false

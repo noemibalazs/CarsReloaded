@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.noemi.carsreloaded.model.local.Car
-import com.noemi.carsreloaded.usecase.UseCaseFilterByPlateNumber
+import com.noemi.carsreloaded.usecase.FilterByPlateNumberUseCase
 import kotlinx.coroutines.launch
 
-class PlateNumberViewModel(private val useCaseFilterByPlateNumber: UseCaseFilterByPlateNumber) : ViewModel() {
+class PlateNumberViewModel(private val filterByPlateNumberUseCase: FilterByPlateNumberUseCase) : ViewModel() {
 
     private val _cars = MutableLiveData<List<Car>>()
     val cars: LiveData<List<Car>> = _cars
@@ -23,7 +23,7 @@ class PlateNumberViewModel(private val useCaseFilterByPlateNumber: UseCaseFilter
         _hideKeyboard.value = true
 
         viewModelScope.launch {
-            val cars = useCaseFilterByPlateNumber.invoke(plateNumber.get().plus("%"))
+            val cars = filterByPlateNumberUseCase.invoke(plateNumber.get().plus("%"))
             _cars.value = cars
             plateNumber.set("")
         }

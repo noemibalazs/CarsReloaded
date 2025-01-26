@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.noemi.carsreloaded.model.local.Car
 import com.noemi.carsreloaded.screens.plate.PlateNumberViewModel
-import com.noemi.carsreloaded.usecase.UseCaseFilterByPlateNumber
+import com.noemi.carsreloaded.usecase.FilterByPlateNumberUseCase
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -24,7 +24,7 @@ class PlateNumberViewModelTest {
     val testRule = InstantTaskExecutorRule()
 
     private val dispatcher = UnconfinedTestDispatcher()
-    private val useCase: UseCaseFilterByPlateNumber = mockk()
+    private val useCase: FilterByPlateNumberUseCase = mockk()
 
     private val carsObserver: Observer<List<Car>> = mockk()
     private val hideKeyBoardObserver: Observer<Boolean> = mockk()
@@ -41,7 +41,7 @@ class PlateNumberViewModelTest {
     fun setUp() {
         Dispatchers.setMain(dispatcher)
         viewModel = PlateNumberViewModel(
-            useCaseFilterByPlateNumber = useCase
+            filterByPlateNumberUseCase = useCase
         )
 
         carsCaptor.clear()

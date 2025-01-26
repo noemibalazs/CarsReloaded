@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class UseCaseFilterByBatteryPercentageImplTest {
+class FilterByBatteryPercentageUseCaseTest {
 
     private val carsRepository: CarRepository = mockk()
     private val car1 = mockk<Car>()
@@ -15,13 +15,13 @@ class UseCaseFilterByBatteryPercentageImplTest {
     private val battery1 = 69
     private val battery2 = 81
 
-    private lateinit var useCaseSaveCars: UseCaseSaveCars
-    private lateinit var useCaseFilterByBatteryPercentage: UseCaseFilterByBatteryPercentage
+    private lateinit var saveCarsUseCase: SaveCarsUseCase
+    private lateinit var filterByBatteryPercentageUseCase: FilterByBatteryPercentageUseCase
 
     @Before
     fun setUp() {
-        useCaseSaveCars = UseCaseSaveCarsImpl(carsRepository)
-        useCaseFilterByBatteryPercentage = UseCaseFilterByBatteryPercentageImpl(carsRepository)
+        saveCarsUseCase = SaveCarsUseCase(carsRepository)
+        filterByBatteryPercentageUseCase = FilterByBatteryPercentageUseCase(carsRepository)
     }
 
 
@@ -34,8 +34,8 @@ class UseCaseFilterByBatteryPercentageImplTest {
         coEvery { carsRepository.saveCars(listOf(car1, car2)) } just runs
         coEvery { carsRepository.filteredByBatteryPercentage(72) } returns listOf(car1)
 
-        useCaseSaveCars.invoke(listOf(car1, car2))
-        useCaseFilterByBatteryPercentage.invoke(72)
+        saveCarsUseCase.invoke(listOf(car1, car2))
+        filterByBatteryPercentageUseCase.invoke(72)
 
         coVerifyAll {
             carsRepository.saveCars(listOf(car1, car2))
@@ -51,8 +51,8 @@ class UseCaseFilterByBatteryPercentageImplTest {
         coEvery { carsRepository.saveCars(listOf(car1)) } just runs
         coEvery { carsRepository.filteredByBatteryPercentage(90) } returns emptyList()
 
-        useCaseSaveCars.invoke(listOf(car1))
-        useCaseFilterByBatteryPercentage.invoke(90)
+        saveCarsUseCase.invoke(listOf(car1))
+        filterByBatteryPercentageUseCase.invoke(90)
 
         coVerifyAll {
             carsRepository.saveCars(listOf(car1))

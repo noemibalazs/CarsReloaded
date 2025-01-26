@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.noemi.carsreloaded.model.local.Car
-import com.noemi.carsreloaded.usecase.UseCaseFilterByBatteryPercentage
+import com.noemi.carsreloaded.usecase.FilterByBatteryPercentageUseCase
 import kotlinx.coroutines.launch
 
 class BatteryViewModel(
-    private val useCaseFilterByBatteryPercentage: UseCaseFilterByBatteryPercentage
+    private val filterByBatteryPercentageUseCase: FilterByBatteryPercentageUseCase
 ) : ViewModel() {
 
     private val _cars = MutableLiveData<List<Car>>()
@@ -26,7 +26,7 @@ class BatteryViewModel(
 
         viewModelScope.launch {
             val percentage = batteryPercentage.get()?.toIntOrNull()
-            val cars = useCaseFilterByBatteryPercentage.invoke(percentage ?: 0)
+            val cars = filterByBatteryPercentageUseCase.invoke(percentage ?: 0)
             _cars.value = cars
             batteryPercentage.set("")
         }

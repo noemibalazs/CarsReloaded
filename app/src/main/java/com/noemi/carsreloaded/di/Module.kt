@@ -62,11 +62,11 @@ val carRepositoryModule = module {
 }
 
 val useCasesModule = module {
-    single<UseCaseLoadCars> { UseCaseLoadCarsImpl(carRepository = get()) }
-    single<UseCaseSaveCars> { UseCaseSaveCarsImpl(carRepository = get()) }
-    single<UseCaseFilterByBatteryPercentage> { UseCaseFilterByBatteryPercentageImpl(carRepository = get()) }
-    single<UseCaseFilterByPlateNumber> { UseCaseFilterByPlateNumberImpl(carRepository = get()) }
-    single<UseCaseGetCars> { UseCaseGetCarsImpl(carRepository = get()) }
+    single<LoadCarsUseCase> { LoadCarsUseCase(carRepository = get()) }
+    single<SaveCarsUseCase> { SaveCarsUseCase(carRepository = get()) }
+    single<FilterByBatteryPercentageUseCase> { FilterByBatteryPercentageUseCase(carRepository = get()) }
+    single<FilterByPlateNumberUseCase> { FilterByPlateNumberUseCase(carRepository = get()) }
+    single<GetCarsUseCase> { GetCarsUseCase(carRepository = get()) }
 }
 
 val viewModelsModule = module {

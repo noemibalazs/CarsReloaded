@@ -7,24 +7,24 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class UseCaseSaveCarsImplTest {
+class SaveCarsUseCaseTest {
 
     private var carsRepository: CarRepository = mockk()
     private val car = mockk<Car>()
     private val cars = listOf(car)
 
-    private lateinit var useCaseSaveCars: UseCaseSaveCars
+    private lateinit var saveCarsUseCase: SaveCarsUseCase
 
     @Before
     fun setUp() {
-        useCaseSaveCars = UseCaseSaveCarsImpl(carsRepository)
+        saveCarsUseCase = SaveCarsUseCase(carsRepository)
     }
 
     @Test
     fun `test save cars should be ok`() = runBlocking {
         coEvery { carsRepository.saveCars(cars) } just runs
 
-        useCaseSaveCars.invoke(cars)
+        saveCarsUseCase.invoke(cars)
 
         coVerify { carsRepository.saveCars(cars) }
     }
